@@ -29,7 +29,10 @@ import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
-fun BottomBar(bottonState: ModalBottomSheetState, scope:CoroutineScope) {
+fun BottomBar(
+    bottonState: ModalBottomSheetState,
+    scope: CoroutineScope,
+) {
 Row(modifier = Modifier
     .fillMaxWidth()
     .background(MaterialTheme.colorScheme.surfaceVariant)
@@ -38,7 +41,11 @@ Row(modifier = Modifier
     )
 {
     Text("Made In India", fontFamily = FontFamily.Cursive, modifier = Modifier.weight(2.0f).padding(top = 12.dp), color = MaterialTheme.colorScheme.onBackground, fontWeight = FontWeight.SemiBold)
-    IconButton(onClick = {scope.launch {   bottonState.show()} }) {
+    IconButton(onClick = {
+
+        scope.launch {
+        bottonState.show()}
+    }) {
             Icon(imageVector = Icons.Default.Help, contentDescription ="Help" , tint = MaterialTheme.colorScheme.onPrimaryContainer,)
     }
     IconButton(onClick = {scope.launch {   bottonState.show()}}) {

@@ -10,13 +10,10 @@ import androidx.compose.material.ModalBottomSheetLayout
 import androidx.compose.material.ModalBottomSheetValue
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.example.accessdots.components.BottomBar
-import com.example.accessdots.components.BottomSheetHelp
-import com.example.accessdots.components.HomeScreen
+import com.example.accessdots.components.*
 import com.example.accessdots.ui.theme.AccessDotsTheme
 
 class MainActivity : ComponentActivity() {
@@ -39,13 +36,19 @@ class MainActivity : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalMaterialApi::class)
 @Composable
 fun Greeting(name: String) {
+    val switchState = remember {
+        mutableStateOf(true)
+    }
+    var currentBottomSheet: BottomSheetType? by remember{
+        mutableStateOf(null)
+    }
     val scaffoldState= rememberScaffoldState()
     var coroutinescope= rememberCoroutineScope()
     var bottonState= rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     ModalBottomSheetLayout(sheetState = bottonState, sheetContent = { BottomSheetHelp()})
     {
         Scaffold(scaffoldState = scaffoldState, bottomBar = { BottomBar(bottonState,coroutinescope)}) {
-            HomeScreen()
+            HomeScreen(switchState)
         }
     }
 
